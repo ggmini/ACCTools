@@ -1,4 +1,3 @@
 # ACCTools
 
-Collection of ACC Tools using Shared Memory
-Using Code from rsys-dev/accsharedmemory
+Collection of ACC Tools using Shared Memory<br>Using Code from rsys-dev/accsharedmemory
