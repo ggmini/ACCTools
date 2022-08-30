@@ -96,14 +96,22 @@ namespace AssettoCorsaSharedMemory
             staticInfoTimer.Elapsed += staticInfoTimer_Elapsed;
             StaticInfoInterval = 1000;
 
-            Stop();
-        }
+            //Stop() without StatusLabel
+			memoryStatus = AC_MEMORY_STATUS.DISCONNECTED;
+			sharedMemoryRetryTimer.Stop();
+
+			// Stop the timers
+			physicsTimer.Stop();
+			graphicsTimer.Stop();
+			staticInfoTimer.Stop();
+		}
 
         /// <summary>
         /// Connect to the shared memory and start the update timers
         /// </summary>
         public void Start()
         {
+            mainForm.SetStatusLabel("Connecting...");
             sharedMemoryRetryTimer.Start();
         }
 
@@ -135,7 +143,9 @@ namespace AssettoCorsaSharedMemory
                 // Stop retry timer
                 sharedMemoryRetryTimer.Stop();
                 memoryStatus = AC_MEMORY_STATUS.CONNECTED;
-                mainForm.startUpdateTimer();
+                mainForm.SetStatusLabel("Connected.");
+                mainForm.SetStartWeather(ReadGraphics().RainIntensity);
+                mainForm.weatherTimer.Start();
                 return true;
             }
             catch (FileNotFoundException)
@@ -151,17 +161,16 @@ namespace AssettoCorsaSharedMemory
         /// Stop the timers and dispose of the shared memory handles
         /// </summary>
         public void Stop()
-        {
+        {            
             memoryStatus = AC_MEMORY_STATUS.DISCONNECTED;
             sharedMemoryRetryTimer.Stop();
-
-			mainForm.stopUpdateTimer();
 
 			// Stop the timers
 			physicsTimer.Stop();
             graphicsTimer.Stop();
             staticInfoTimer.Stop();
-        }
+			mainForm.SetStatusLabel("Stopped.");
+		}
 
         /// <summary>
         /// Interval for physics updates in milliseconds

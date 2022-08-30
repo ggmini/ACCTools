@@ -75,13 +75,13 @@ namespace AssettoCorsaSharedMemory
 
     public enum AC_TRACK_GRIP_STATUS
     {
-        AC_GREEN = 0,
-        AC_FAST = 1,
-        AC_OPTIMUM = 2,
-        AC_GREASY = 3,
-        AC_DEMP = 4,
-        AC_WET = 5,
-        AC_FLOODED = 6
+        ACC_GREEN = 1105015604,
+        ACC_FAST = 1,
+        ACC_OPTIMUM = 2,
+        ACC_GREASY = 3,
+        ACC_DAMP = 4,
+        ACC_WET = 5,
+        ACC_FLOODED = 6
     }
 
     public enum AC_RAIN_INTENSITY
