@@ -32,9 +32,9 @@ partial class Form1
 			this.TrackStatusLabel = new System.Windows.Forms.Label();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-			this.WeatherList = new System.Windows.Forms.ListBox();
 			this.SettingsButton = new System.Windows.Forms.Button();
 			this.StartStopButton = new System.Windows.Forms.Button();
+			this.WeatherList = new System.Windows.Forms.ListBox();
 			this.StatusStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -62,17 +62,6 @@ partial class Form1
 			this.StatusLabel.Size = new System.Drawing.Size(89, 17);
 			this.StatusLabel.Text = "Status: Stopped";
 			// 
-			// WeatherList
-			// 
-			this.WeatherList.FormattingEnabled = true;
-			this.WeatherList.ItemHeight = 15;
-			this.WeatherList.Items.AddRange(new object[] {
-            "Current Weather:"});
-			this.WeatherList.Location = new System.Drawing.Point(12, 27);
-			this.WeatherList.Name = "WeatherList";
-			this.WeatherList.Size = new System.Drawing.Size(120, 94);
-			this.WeatherList.TabIndex = 2;
-			// 
 			// SettingsButton
 			// 
 			this.SettingsButton.Location = new System.Drawing.Point(713, 12);
@@ -92,6 +81,17 @@ partial class Form1
 			this.StartStopButton.Text = "Start";
 			this.StartStopButton.UseVisualStyleBackColor = true;
 			this.StartStopButton.Click += new System.EventHandler(this.StartStopButton_Click);
+			// 
+			// WeatherList
+			// 
+			this.WeatherList.FormattingEnabled = true;
+			this.WeatherList.ItemHeight = 15;
+			this.WeatherList.Items.AddRange(new object[] {
+            "Current Weather:"});
+			this.WeatherList.Location = new System.Drawing.Point(12, 27);
+			this.WeatherList.Name = "WeatherList";
+			this.WeatherList.Size = new System.Drawing.Size(120, 94);
+			this.WeatherList.TabIndex = 2;
 			// 
 			// Form1
 			// 
@@ -117,7 +117,7 @@ partial class Form1
     private Label TrackStatusLabel;
     private StatusStrip StatusStrip;
     private ToolStripStatusLabel StatusLabel;
-	private ListBox WeatherList;
 	private Button SettingsButton;
 	private Button StartStopButton;
+	private ListBox WeatherList;
 }

@@ -55,7 +55,8 @@ namespace ACC_Tools
 		void GraphicsUpdated(object sender, GraphicsEventArgs e)
 		{
 			gripUpdate(e);
-			weatherUpdate(e);
+			weatherUpdate(e);			
+			WeatherList.Text = e.Graphics.TrackStatus;
 		}
 
 		void weatherUpdate(GraphicsEventArgs e)
@@ -69,24 +70,7 @@ namespace ACC_Tools
 
 		void gripUpdate(GraphicsEventArgs e)
 		{
-			AC_TRACK_GRIP_STATUS grip = e.Graphics.TrackGripStatus;
-			string gripString;
-			if (grip == AC_TRACK_GRIP_STATUS.ACC_GREEN)
-				gripString = "Green";
-			else if (grip == AC_TRACK_GRIP_STATUS.ACC_FAST)
-				gripString = "Fast";
-			else if (grip == AC_TRACK_GRIP_STATUS.ACC_OPTIMUM)
-				gripString = "Optimum";
-			else if (grip == AC_TRACK_GRIP_STATUS.ACC_GREASY)
-				gripString = "Greasy";
-			else if (grip == AC_TRACK_GRIP_STATUS.ACC_DAMP)
-				gripString = "Damp";
-			else if (grip == AC_TRACK_GRIP_STATUS.ACC_WET)
-				gripString = "Wet";
-			else
-				gripString = "Flooded";
-
-			TrackStatusLabel.Text = $"Track Status: {gripString}";
+			TrackStatusLabel.Text = $"Track Status: {e.Graphics.TrackStatus}";
 		}
 
 		void PhysicsUpdated(object sender, PhysicsEventArgs e)
@@ -111,6 +95,8 @@ namespace ACC_Tools
 
 		void weatherTimerElapsed(object sender, ElapsedEventArgs e)
 		{
+			WeatherList.Items.Clear();
+
 			DateTime current = DateTime.Now;
 			if (weatherTimes.Count > 1)			{
 				if (DateTime.Compare(current, weatherTimes[1].Time) <= 0)
@@ -150,12 +136,10 @@ namespace ACC_Tools
 					timeString = "Current";
 				weatherTimeString[i] = $"{timeString} - {weatherString}";
 			}
-			string textBoxString = "";
 			foreach (string line in weatherTimeString)
 			{
-				textBoxString += $"{line} \n";
+				WeatherList.Items.Add(line);
 			}
-			WeatherList.Text = textBoxString;
 		}
 
 
